@@ -15,7 +15,7 @@ public class ShowTempFahrOrCel extends JFrame
         super("Temperatur Sensor");
         setLayout(new FlowLayout());
 
-        tempTextDisplay = new JTextField("--");
+        tempTextDisplay = new JTextField("Unplugged Sensor");
         tempTextDisplay.setEditable(false);
         add(tempTextDisplay);
 
