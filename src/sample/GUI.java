@@ -13,6 +13,8 @@ import java.util.concurrent.Executors;
 public class GUI extends JFrame
 {
     private static DatagramSocket socket;
+    private static DatagramSocket hardwareSocket;
+
 
     public GUI() {
         //this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -60,12 +62,27 @@ public class GUI extends JFrame
             socketException.printStackTrace();
             System.exit(1);
         }
+        try // create DatagramSocket for sending and receiving packets
+        {
+            hardwareSocket = new DatagramSocket(9999);
+        } catch (SocketException socketException) {
+            socketException.printStackTrace();
+            System.exit(1);
+        }
+
 
         ExecutorService executorService = Executors.newCachedThreadPool();
         executorService.execute(new TriggerThread());
         executorService.execute(new DisplayThread());
         executorService.execute(new GraphThread());
-        executorService.execute(new dataThread());
+        executorService.execute(new dataThread(this));
+
+
+
+
+
+
+
 
         try
         {
@@ -81,6 +98,7 @@ public class GUI extends JFrame
             System.out.println(ex);
         }
 
+
     }
 
 
@@ -93,13 +111,34 @@ public class GUI extends JFrame
         System.out.println("Sent: " + new String(receivePacket.getData()));
     }
 
+    public void waitForDataPackets(){
+        while (true){
+            try{
+                byte[] data = new byte[1000];
+                DatagramPacket receivePacket = new DatagramPacket(data,data.length);
+                hardwareSocket.receive(receivePacket);
+                String messageReceived = new String(receivePacket.getData());
+                System.out.println(messageReceived);
+
+                //Parse and store data function
+                SharedData.data[SharedData.dataPointer] = Integer.parseInt(messageReceived);
+
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+        }
+    }
+
+
+
+
 
     public static class SharedData{
-        Float data[] = new Float[300];
-        int dataPointer = 0;
-        int Tmax = 63;
-        int Tmin = -10;
-        String phoneNumber = "5555555555";
+        static Integer data[] = new Integer[300];
+        static int dataPointer = 0;
+        static int Tmax = 63;
+        static int Tmin = -10;
+        static String phoneNumber = "5555555555";
 
 
     }
