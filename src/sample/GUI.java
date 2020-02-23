@@ -25,7 +25,7 @@ public class GUI extends JFrame
         ShowTempFahrOrCel panel1 = new ShowTempFahrOrCel();
         JPanel panel2 = new JPanel();
         UserInputs panel3 = new UserInputs();
-        JPanel panel4 = new JPanel();
+        JPanel panel4 = new ShutOffScreen();
 
 
         getContentPane().add(splitTemp);

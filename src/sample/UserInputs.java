@@ -1,8 +1,5 @@
 package sample;
 
-import javafx.scene.input.KeyCode;
-import sun.awt.ExtendedKeyCodes;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
