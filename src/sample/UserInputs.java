@@ -16,23 +16,29 @@ public class UserInputs extends JPanel
     {
         setLayout(new FlowLayout());
 
-        phoneInput = new JTextField();
-        add(phoneInput);
-
-        phoneDisplay = new JLabel();
+        phoneDisplay = new JLabel("Phone #: ");
+        phoneDisplay.setSize(30,20);
         add(phoneDisplay);
 
-        maxInput = new JTextField();
-        add(maxInput);
+        phoneInput = new JTextField();
+        phoneInput.setColumns(10);
+        add(phoneInput);
 
-        maxDisplay = new JLabel();
+        maxDisplay = new JLabel("Max temp: ");
+        maxDisplay.setSize(30,20);
         add(maxDisplay);
 
-        minInput = new JTextField();
-        add(minInput);
+        maxInput = new JTextField();
+        maxInput.setColumns(6);
+        add(maxInput);
 
-        minDisplay = new JLabel();
+        minDisplay = new JLabel("Min temp");
+        minDisplay.setSize(30,20);
         add(minDisplay);
+
+        minInput = new JTextField();
+        minInput.setColumns(6);
+        add(minInput);
     }
 
 }

@@ -74,7 +74,7 @@ public class GUI extends JFrame
             DatagramPacket sendPacket = new DatagramPacket(
                     bytes, bytes.length,
                     InetAddress.getLocalHost(), 5000);
-            sendPacketToMaven(sendPacket);
+            //sendPacketToMaven(sendPacket);
         }
         catch (Exception ex)
         {
