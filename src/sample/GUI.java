@@ -17,15 +17,40 @@ public class GUI extends JFrame
     public GUI() {
         //this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         getContentPane().setLayout(new GridLayout());
-        JSplitPane splitPane = new JSplitPane();
-        setSize(new Dimension(400,800));
-        getContentPane().add(splitPane);
-        splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        splitPane.setDividerLocation(50);
-        ShowTempFahrOrCel panel = new ShowTempFahrOrCel();
-        splitPane.setTopComponent(panel);
-        UserInputs panel2 = new UserInputs();
-        splitPane.setBottomComponent(panel2);
+        setSize(new Dimension(600,800));
+
+        JSplitPane splitTemp = new JSplitPane();
+        JSplitPane splitChart = new JSplitPane();
+        JSplitPane splitInfo = new JSplitPane();
+        ShowTempFahrOrCel panel1 = new ShowTempFahrOrCel();
+        JPanel panel2 = new JPanel();
+        UserInputs panel3 = new UserInputs();
+        JPanel panel4 = new JPanel();
+
+
+        getContentPane().add(splitTemp);
+        splitTemp.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitTemp.setDividerLocation(100);
+        splitChart.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitChart.setDividerLocation(400);
+        splitInfo.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitInfo.setDividerLocation(100);
+
+        splitTemp.setTopComponent(panel1);
+        splitTemp.setBottomComponent(splitChart);
+
+        splitChart.setTopComponent(panel2);
+        splitChart.setBottomComponent(splitInfo);
+
+        splitInfo.setTopComponent(panel3);
+        splitInfo.setBottomComponent(panel4);
+
+
+
+
+
+
+
         this.setVisible(true);
 
         try // create DatagramSocket for sending and receiving packets
@@ -68,4 +93,20 @@ public class GUI extends JFrame
         System.out.println("Sent: " + new String(receivePacket.getData()));
     }
 
+
+    public static class SharedData{
+        Float data[] = new Float[300];
+        int dataPointer = 0;
+        int Tmax = 63;
+        int Tmin = -10;
+        String phoneNumber = "5555555555";
+
+
+    }
+
+
+
 }
+
+
+
