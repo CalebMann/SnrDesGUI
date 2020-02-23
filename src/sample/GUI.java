@@ -4,6 +4,8 @@ import  javax.swing.*;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class GUI extends JFrame
 {
@@ -22,6 +24,12 @@ public class GUI extends JFrame
             socketException.printStackTrace();
             System.exit(1);
         }
+
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        executorService.execute(new TriggerThread());
+        executorService.execute(new DisplayThread());
+        executorService.execute(new GraphThread());
+        executorService.execute(new dataThread());
 
         try
         {
