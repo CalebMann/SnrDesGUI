@@ -1,6 +1,9 @@
 package sample;
 
+import javafx.scene.control.SplitPane;
+
 import  javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
@@ -11,11 +14,19 @@ public class GUI extends JFrame
 {
     private static DatagramSocket socket;
 
-    public static void main(String[] args) {
-        ShowTempFahrOrCel frame = new ShowTempFahrOrCel();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
-        frame.setVisible(true);
+    public GUI() {
+        //this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        getContentPane().setLayout(new GridLayout());
+        JSplitPane splitPane = new JSplitPane();
+        setSize(new Dimension(400,800));
+        getContentPane().add(splitPane);
+        splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitPane.setDividerLocation(50);
+        ShowTempFahrOrCel panel = new ShowTempFahrOrCel();
+        splitPane.setTopComponent(panel);
+        UserInputs panel2 = new UserInputs();
+        splitPane.setBottomComponent(panel2);
+        this.setVisible(true);
 
         try // create DatagramSocket for sending and receiving packets
         {
@@ -38,7 +49,7 @@ public class GUI extends JFrame
             DatagramPacket sendPacket = new DatagramPacket(
                     bytes, bytes.length,
                     InetAddress.getLocalHost(), 5000);
-            sendPacketToMaven(sendPacket);
+            //sendPacketToMaven(sendPacket);
         }
         catch (Exception ex)
         {

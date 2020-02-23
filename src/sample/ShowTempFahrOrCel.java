@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ShowTempFahrOrCel extends JFrame
+public class ShowTempFahrOrCel extends JPanel
 {
     private final JToggleButton celsius;
     private final JToggleButton fahrenheit;
@@ -12,7 +12,6 @@ public class ShowTempFahrOrCel extends JFrame
 
     public ShowTempFahrOrCel()
     {
-        super("Temperatur Sensor");
         setLayout(new FlowLayout());
 
         tempTextDisplay = new JTextField("Unplugged Sensor");
