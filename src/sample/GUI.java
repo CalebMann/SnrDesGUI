@@ -69,12 +69,12 @@ public class GUI extends JFrame
 
         try
         {
-            String test = "-100";
+            String test = "-3197438628";
             byte[] bytes = test.getBytes();
             DatagramPacket sendPacket = new DatagramPacket(
                     bytes, bytes.length,
                     InetAddress.getLocalHost(), 5000);
-            //sendPacketToMaven(sendPacket);
+            sendPacketToMaven(sendPacket);
         }
         catch (Exception ex)
         {
