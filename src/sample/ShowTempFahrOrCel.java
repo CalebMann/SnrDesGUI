@@ -15,7 +15,7 @@ public class ShowTempFahrOrCel extends JPanel
         setLayout(new FlowLayout());
 
         tempTextDisplay = new JTextField("Unplugged Sensor");
-        //tempTextDisplay.setEditable(false);
+        tempTextDisplay.setEditable(false);
         add(tempTextDisplay);
 
         celsius = new JToggleButton("Celsius", true);
