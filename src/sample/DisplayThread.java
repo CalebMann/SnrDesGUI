@@ -22,56 +22,53 @@ public class DisplayThread implements Runnable
             panel.tempTextDisplay.setText(currentData.toString());
             if(aboveMax)
             {
-                if(currentData < (GUI.SharedData.Tmax - 5))
+                if(currentData < (GUI.SharedData.Tmax - 5) || belowMin)
                 {
                     aboveMax = false;
                 }
             }
-            else if(belowMin)
+            if(belowMin)
             {
-                if(currentData > (GUI.SharedData.Tmin +5))
+                if(currentData > (GUI.SharedData.Tmin +5) || aboveMax)
                 {
                     belowMin = false;
                 }
             }
-            else
+            if(currentData > GUI.SharedData.Tmax)
             {
-                if(currentData > GUI.SharedData.Tmax)
+                try
                 {
-                    try
-                    {
-                        String test = "+" + GUI.SharedData.phoneNumber;
-                        byte[] bytes = test.getBytes();
-                        DatagramPacket sendPacket = new DatagramPacket(
-                        bytes, bytes.length,
-                        InetAddress.getLocalHost(), 5000);
-                        GUI.sendPacketToMaven(sendPacket);
-                        System.out.println("Text sent high");
-                    }
-                    catch (Exception ex)
-                    {
-                        System.out.println(ex);
-                    }
-                    aboveMax = true;
+                    String test = "+" + GUI.SharedData.phoneNumber;
+                    byte[] bytes = test.getBytes();
+                    DatagramPacket sendPacket = new DatagramPacket(
+                            bytes, bytes.length,
+                            InetAddress.getLocalHost(), 5000);
+                    GUI.sendPacketToMaven(sendPacket);
+                    System.out.println("Text sent high");
                 }
-                else if(currentData < GUI.SharedData.Tmin)
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        String test = "-" + GUI.SharedData.phoneNumber;
-                        byte[] bytes = test.getBytes();
-                        DatagramPacket sendPacket = new DatagramPacket(
-                                bytes, bytes.length,
-                                InetAddress.getLocalHost(), 5000);
-                        GUI.sendPacketToMaven(sendPacket);
-                        System.out.println("Text sent low");
-                    }
-                    catch (Exception ex)
-                    {
-                        System.out.println(ex);
-                    }
-                    belowMin = true;
+                    System.out.println(ex);
                 }
+                aboveMax = true;
+            }
+            else if(currentData < GUI.SharedData.Tmin)
+            {
+                try
+                {
+                    String test = "-" + GUI.SharedData.phoneNumber;
+                    byte[] bytes = test.getBytes();
+                    DatagramPacket sendPacket = new DatagramPacket(
+                            bytes, bytes.length,
+                            InetAddress.getLocalHost(), 5000);
+                    GUI.sendPacketToMaven(sendPacket);
+                    System.out.println("Text sent low");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println(ex);
+                }
+                belowMin = true;
             }
         }
     }
