@@ -8,7 +8,7 @@ public class TriggerThread implements Runnable
     {
         while(true)
         {
-            System.out.println("Triggered");
+            //System.out.println("Triggered");
             try {
                 Thread.sleep(1000);
             }catch (Exception ex)

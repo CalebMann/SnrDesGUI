@@ -8,7 +8,7 @@ public class DisplayThread implements Runnable
     {
         while(true)
         {
-            System.out.println("Diplay");
+            //System.out.println("Diplay");
             try {
                 Thread.sleep(1000);
             }catch (Exception ex)

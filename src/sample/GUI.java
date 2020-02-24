@@ -25,7 +25,7 @@ public class GUI extends JFrame
         JSplitPane splitChart = new JSplitPane();
         JSplitPane splitInfo = new JSplitPane();
         ShowTempFahrOrCel panel1 = new ShowTempFahrOrCel();
-        JPanel panel2 = new JPanel();
+        JPanel panel2 = new Graph();
         UserInputs panel3 = new UserInputs();
         JPanel panel4 = new ShutOffScreen();
 
@@ -121,7 +121,7 @@ public class GUI extends JFrame
                 System.out.println(messageReceived);
 
                 //Parse and store data function
-                SharedData.data[SharedData.dataPointer] = Integer.parseInt(messageReceived);
+                //SharedData.data[SharedData.dataPointer] = Integer.parseInt(messageReceived);
 
             }catch (Exception ex){
                 ex.printStackTrace();

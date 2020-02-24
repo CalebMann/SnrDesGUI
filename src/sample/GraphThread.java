@@ -8,7 +8,12 @@ public class GraphThread implements Runnable
     {
         while(true)
         {
-
+            try {
+                Thread.sleep(1000);
+            }catch (Exception ex)
+            {
+                System.out.println(ex);
+            }
         }
     }
 }
