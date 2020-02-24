@@ -43,7 +43,7 @@ public class DisplayThread implements Runnable
                     DatagramPacket sendPacket = new DatagramPacket(
                             bytes, bytes.length,
                             InetAddress.getLocalHost(), 5000);
-                    GUI.sendPacketToMaven(sendPacket);
+                    GUI.sendPackets(sendPacket);
                     System.out.println("Text sent high");
                 }
                 catch (Exception ex)
@@ -61,7 +61,7 @@ public class DisplayThread implements Runnable
                     DatagramPacket sendPacket = new DatagramPacket(
                             bytes, bytes.length,
                             InetAddress.getLocalHost(), 5000);
-                    GUI.sendPacketToMaven(sendPacket);
+                    GUI.sendPackets(sendPacket);
                     System.out.println("Text sent low");
                 }
                 catch (Exception ex)

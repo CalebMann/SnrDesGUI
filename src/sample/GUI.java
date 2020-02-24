@@ -106,7 +106,7 @@ public class GUI extends JFrame
     }
 
 
-    public static void sendPacketToMaven(DatagramPacket receivePacket)
+    public static void sendPackets(DatagramPacket receivePacket)
             throws IOException {
         DatagramPacket sendPacket = new DatagramPacket(
                 receivePacket.getData(), receivePacket.getLength(),
