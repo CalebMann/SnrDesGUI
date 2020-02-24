@@ -125,7 +125,7 @@ public class GUI extends JFrame
                 DatagramPacket receivePacket = new DatagramPacket(data,data.length);
                 hardwareSocket.receive(receivePacket);
                 String messageReceived = new String(receivePacket.getData());
-
+                messageReceived = messageReceived.substring(0,5);
                 System.out.println(messageReceived);
 
                 SharedData.packetsReceived++;
