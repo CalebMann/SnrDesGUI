@@ -15,7 +15,7 @@ public class DisplayThread implements Runnable
             if(panel.fahrenheit.isSelected()){
                 currentData = (float)(1.8 * currentData + 32);
             }
-            panel.tempTextDisplay = new JTextField(currentData.toString());
+            panel.tempTextDisplay.setText(currentData.toString());
         }
     }
 }
