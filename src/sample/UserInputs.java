@@ -123,6 +123,7 @@ public class UserInputs extends JPanel
             if(phoneInput.getText().matches("\\d{10}")) //10 digit decimal number
             {
                 currentphoneInput.setText(phoneInput.getText());
+                GUI.SharedData.phoneNumber = phoneInput.getText();
             }
             phoneInput.setText("");
         }
@@ -141,9 +142,10 @@ public class UserInputs extends JPanel
                 System.out.println("Couldn't format float from max input.");
             }
 
-            if(input > Float.valueOf(currentminInput.getText()) && input < 63)
+            if(input > Float.valueOf(currentminInput.getText()) && input <= 63)
             {
                 currentmaxInput.setText(input.toString());
+                GUI.SharedData.Tmax = input;
             }
             maxInput.setText("");
         }
@@ -162,9 +164,10 @@ public class UserInputs extends JPanel
                 System.out.println("Couldn't format float from min input.");
             }
 
-            if(input < Float.valueOf(currentmaxInput.getText()) && input > -10)
+            if(input < Float.valueOf(currentmaxInput.getText()) && input >= -10)
             {
                 currentminInput.setText(input.toString());
+                GUI.SharedData.Tmin = input;
             }
             minInput.setText("");
         }

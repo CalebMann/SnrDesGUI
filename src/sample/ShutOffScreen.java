@@ -13,7 +13,7 @@ public class ShutOffScreen extends JPanel
     {
         setLayout(new FlowLayout());
 
-        turnOffButton = new JButton("Turn Off Box Display");
+        turnOffButton = new JButton("Box Display Button");
         add(turnOffButton);
 
         ButtonHit buttonHit = new ButtonHit();
@@ -27,7 +27,14 @@ public class ShutOffScreen extends JPanel
         public void mouseClicked(MouseEvent e) {}
 
         @Override
-        public void mousePressed(MouseEvent e) {}
+        public void mousePressed(MouseEvent e)
+        {
+            if(e.getSource() == turnOffButton)
+            {
+                //some instruction to turn the display off will be sent
+                System.out.println("Display on");
+            }
+        }
 
         @Override
         public void mouseReleased(MouseEvent e)

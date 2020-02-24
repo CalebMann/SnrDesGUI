@@ -14,8 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 public class GUI extends JFrame
 {
-
-
     private static DatagramSocket socket;
     private static DatagramSocket hardwareSocket;
 
@@ -91,25 +89,25 @@ public class GUI extends JFrame
 
 
 
-        try
-        {
-            String test = "-3197438628";
-            byte[] bytes = test.getBytes();
-            DatagramPacket sendPacket = new DatagramPacket(
-                    bytes, bytes.length,
-                    InetAddress.getLocalHost(), 5000);
-            //sendPacketToMaven(sendPacket);
-        }
-        catch (Exception ex)
-        {
-            System.out.println(ex);
-        }
+//        try
+//        {
+//            String test = "-3197438628";
+//            byte[] bytes = test.getBytes();
+//            DatagramPacket sendPacket = new DatagramPacket(
+//                    bytes, bytes.length,
+//                    InetAddress.getLocalHost(), 5000);
+//            //sendPacketToMaven(sendPacket);
+//        }
+//        catch (Exception ex)
+//        {
+//            System.out.println(ex);
+//        }
 
 
     }
 
 
-    private static void sendPacketToMaven(DatagramPacket receivePacket)
+    public static void sendPacketToMaven(DatagramPacket receivePacket)
             throws IOException {
         DatagramPacket sendPacket = new DatagramPacket(
                 receivePacket.getData(), receivePacket.getLength(),
@@ -142,9 +140,9 @@ public class GUI extends JFrame
     public static class SharedData{
         static Integer data[] = new Integer[300];
         static int dataPointer = 0;
-        static int Tmax = 63;
-        static int Tmin = -10;
-        static String phoneNumber = "5555555555";
+        static float Tmax = 63;
+        static float Tmin = -10;
+        static String phoneNumber = "5632310443";
         static Integer sumData = 0;
         static Integer packetsReceived = 0;
     }

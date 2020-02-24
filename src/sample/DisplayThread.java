@@ -1,9 +1,13 @@
 package sample;
 import javax.swing.*;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
 
 public class DisplayThread implements Runnable
 {
     ShowTempFahrOrCel panel;
+    public boolean aboveMax = false;
+    public boolean belowMin = false;
     DisplayThread(ShowTempFahrOrCel panel){this.panel = panel;}
 
     @Override
@@ -16,6 +20,59 @@ public class DisplayThread implements Runnable
                 currentData = (float)(1.8 * currentData + 32);
             }
             panel.tempTextDisplay.setText(currentData.toString());
+            if(aboveMax)
+            {
+                if(currentData < (GUI.SharedData.Tmax - 5))
+                {
+                    aboveMax = false;
+                }
+            }
+            else if(belowMin)
+            {
+                if(currentData > (GUI.SharedData.Tmin +5))
+                {
+                    belowMin = false;
+                }
+            }
+            else
+            {
+                if(currentData > GUI.SharedData.Tmax)
+                {
+                    try
+                    {
+                        String test = "+" + GUI.SharedData.phoneNumber;
+                        byte[] bytes = test.getBytes();
+                        DatagramPacket sendPacket = new DatagramPacket(
+                        bytes, bytes.length,
+                        InetAddress.getLocalHost(), 5000);
+                        GUI.sendPacketToMaven(sendPacket);
+                        System.out.println("Text sent high");
+                    }
+                    catch (Exception ex)
+                    {
+                        System.out.println(ex);
+                    }
+                    aboveMax = true;
+                }
+                else if(currentData < GUI.SharedData.Tmin)
+                {
+                    try
+                    {
+                        String test = "-" + GUI.SharedData.phoneNumber;
+                        byte[] bytes = test.getBytes();
+                        DatagramPacket sendPacket = new DatagramPacket(
+                                bytes, bytes.length,
+                                InetAddress.getLocalHost(), 5000);
+                        GUI.sendPacketToMaven(sendPacket);
+                        System.out.println("Text sent low");
+                    }
+                    catch (Exception ex)
+                    {
+                        System.out.println(ex);
+                    }
+                    belowMin = true;
+                }
+            }
         }
     }
 }
