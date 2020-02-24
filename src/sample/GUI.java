@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 
 public class GUI extends JFrame
 {
+
+
     private static DatagramSocket socket;
     private static DatagramSocket hardwareSocket;
 
@@ -71,7 +73,9 @@ public class GUI extends JFrame
             socketException.printStackTrace();
             System.exit(1);
         }
-
+        for(int i=0; i<300; i++){
+            SharedData.data[i] = 0;
+        }
 
         ExecutorService executorService = Executors.newCachedThreadPool();
         ScheduledExecutorService scheduleService =Executors.newScheduledThreadPool(1);
@@ -121,6 +125,7 @@ public class GUI extends JFrame
                 DatagramPacket receivePacket = new DatagramPacket(data,data.length);
                 hardwareSocket.receive(receivePacket);
                 String messageReceived = new String(receivePacket.getData());
+
                 System.out.println(messageReceived);
 
                 SharedData.packetsReceived++;
@@ -134,9 +139,6 @@ public class GUI extends JFrame
     }
 
 
-
-
-
     public static class SharedData{
         static Integer data[] = new Integer[300];
         static int dataPointer = 0;
@@ -145,8 +147,6 @@ public class GUI extends JFrame
         static String phoneNumber = "5555555555";
         static Integer sumData = 0;
         static Integer packetsReceived = 0;
-
-
     }
 
 
