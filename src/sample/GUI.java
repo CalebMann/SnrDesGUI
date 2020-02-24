@@ -9,6 +9,8 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class GUI extends JFrame
 {
@@ -72,9 +74,10 @@ public class GUI extends JFrame
 
 
         ExecutorService executorService = Executors.newCachedThreadPool();
+        ScheduledExecutorService scheduleService =Executors.newScheduledThreadPool(1);
         executorService.execute(new TriggerThread());
-        executorService.execute(new DisplayThread());
-        executorService.execute(new GraphThread());
+        executorService.execute(new DisplayThread(panel1));
+        scheduleService.scheduleAtFixedRate(new GraphThread(), 0, 1, TimeUnit.SECONDS);
         executorService.execute(new dataThread(this));
 
 
@@ -120,8 +123,9 @@ public class GUI extends JFrame
                 String messageReceived = new String(receivePacket.getData());
                 System.out.println(messageReceived);
 
-                //Parse and store data function
-                //SharedData.data[SharedData.dataPointer] = Integer.parseInt(messageReceived);
+                SharedData.packetsReceived++;
+                SharedData.sumData += Integer.parseInt(messageReceived);
+                SharedData.data[SharedData.dataPointer] = SharedData.sumData/SharedData.packetsReceived;
 
             }catch (Exception ex){
                 ex.printStackTrace();
@@ -139,6 +143,8 @@ public class GUI extends JFrame
         static int Tmax = 63;
         static int Tmin = -10;
         static String phoneNumber = "5555555555";
+        static Integer sumData = 0;
+        static Integer packetsReceived = 0;
 
 
     }
