@@ -1,7 +1,16 @@
 package sample;
 
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.ScatterChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.SplitPane;
-
+import javafx.scene.text.Text;
+import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
 import  javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -23,13 +32,23 @@ public class GUI extends JFrame
         getContentPane().setLayout(new GridLayout());
         setSize(new Dimension(600,800));
 
+
+
         JSplitPane splitTemp = new JSplitPane();
         JSplitPane splitChart = new JSplitPane();
         JSplitPane splitInfo = new JSplitPane();
         ShowTempFahrOrCel panel1 = new ShowTempFahrOrCel();
-        JPanel panel2 = new Graph();
+        JFXPanel panel2 = new JFXPanel();
         UserInputs panel3 = new UserInputs();
         JPanel panel4 = new ShutOffScreen();
+
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                initFX(panel2);
+            }
+        });
 
 
         getContentPane().add(splitTemp);
@@ -146,6 +165,39 @@ public class GUI extends JFrame
         static Integer packetsReceived = 0;
     }
 
+
+    private static void initFX(JFXPanel fxPanel) {
+        // This method is invoked on the JavaFX thread
+        Scene scene = createScene();
+        fxPanel.setScene(scene);
+    }
+
+
+
+
+    private static Scene createScene() {
+        NumberAxis xAxis = new NumberAxis(0,300,1);
+        NumberAxis yAxis = new NumberAxis(-10,63,1);
+
+        xAxis.setLabel("Seconds ago");
+        xAxis.setAnimated(false);
+
+        yAxis.setLabel("Temperature (C)");
+        yAxis.setAnimated(false);
+
+        final ScatterChart<Number,Number> graph = new ScatterChart(xAxis,yAxis);
+        graph.setTitle("Realtime Temperature Data");
+        graph.setAnimated(false);
+
+        XYChart.Series<Number,Number> series = new XYChart.Series<>();
+        series.setName("Temperature Data");
+
+        graph.getData().add(series);
+
+        Scene  scene  =  new  Scene(graph);
+
+        return (scene);
+    }
 
 
 }
