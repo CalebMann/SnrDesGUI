@@ -34,7 +34,7 @@ public class DisplayThread implements Runnable
                     belowMin = false;
                 }
             }
-            if(currentData > GUI.SharedData.Tmax)
+            if(currentData > GUI.SharedData.Tmax && !aboveMax)
             {
                 try
                 {
@@ -52,7 +52,7 @@ public class DisplayThread implements Runnable
                 }
                 aboveMax = true;
             }
-            else if(currentData < GUI.SharedData.Tmin)
+            else if(currentData < GUI.SharedData.Tmin && !belowMin)
             {
                 try
                 {

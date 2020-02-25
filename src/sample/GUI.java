@@ -2,6 +2,7 @@ package sample;
 
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
+import javafx.geometry.Side;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.chart.NumberAxis;
@@ -176,8 +177,10 @@ public class GUI extends JFrame
 
 
     private static Scene createScene() {
-        NumberAxis xAxis = new NumberAxis(0,300,1);
-        NumberAxis yAxis = new NumberAxis(-10,63,1);
+        NumberAxis xAxis = new NumberAxis(0,300,5);
+        NumberAxis yAxis = new NumberAxis(-10,63,5);
+
+        yAxis.setSide(Side.RIGHT);
 
         xAxis.setLabel("Seconds ago");
         xAxis.setAnimated(false);
@@ -194,7 +197,7 @@ public class GUI extends JFrame
 
         graph.getData().add(series);
 
-        Scene  scene  =  new  Scene(graph);
+        Scene scene = new Scene(graph);
 
         return (scene);
     }
