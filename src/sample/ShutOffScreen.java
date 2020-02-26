@@ -70,7 +70,7 @@ public class ShutOffScreen extends JPanel
                 //some instruction to turn the display off will be sent
                 try
                 {
-                    String test = "1";
+                    String test = "0";
                     byte[] bytes = test.getBytes();
                     DatagramPacket sendPacket = new DatagramPacket(
                             bytes, bytes.length,
