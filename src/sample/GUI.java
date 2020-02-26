@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class GUI extends JFrame
 {
+    public static XYChart.Series<Number,Number> series;
     private static DatagramSocket socket;
     private static DatagramSocket hardwareSocket;
 
@@ -25,8 +26,6 @@ public class GUI extends JFrame
         //this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         getContentPane().setLayout(new GridLayout());
         setSize(new Dimension(600,800));
-
-
 
         JSplitPane splitTemp = new JSplitPane();
         JSplitPane splitChart = new JSplitPane();
@@ -78,14 +77,14 @@ public class GUI extends JFrame
             socketException.printStackTrace();
             System.exit(1);
         }
-        for(int i=0; i<300; i++){
-            SharedData.data[i] = 0;
-        }
+
+        SharedData.cleardata();
+
 
         ExecutorService executorService = Executors.newCachedThreadPool();
         ScheduledExecutorService scheduleService =Executors.newScheduledThreadPool(1);
         executorService.execute(new DisplayThread(panel1));
-        scheduleService.scheduleAtFixedRate(new GraphThread(), 0, 1, TimeUnit.SECONDS);
+        scheduleService.scheduleAtFixedRate(new GraphThread(series), 0, 1, TimeUnit.SECONDS);
         executorService.execute(new dataThread(this));
     }
 
@@ -126,6 +125,21 @@ public class GUI extends JFrame
         static String phoneNumber = "5632310443";
         static Integer sumData = 0;
         static Integer packetsReceived = 0;
+
+        public static void incDP(){
+            if(dataPointer == 299){
+                dataPointer = 0;
+            }else{
+                dataPointer++;
+            }
+        }
+
+        public static void cleardata(){
+            for(int i=0; i<300; i++){
+                data[i] = null;
+            }
+        }
+
     }
 
     private static void initFX(JFXPanel fxPanel) {
@@ -151,12 +165,13 @@ public class GUI extends JFrame
         graph.setAnimated(false);
         graph.setScaleShape(true);
 
-        XYChart.Series<Number,Number> series = new XYChart.Series<>();
+        series = new XYChart.Series<>();
         series.setName("Temperature Data");
 
-        //series.getData().add(new XYChart.Data(-10,27));
-
         graph.getData().add(series);
+
+        //series.getData().add(new XYChart.Data(-10,27));
+        //series.getData().add(new XYChart.Data(-20,27));
 
         Scene scene = new Scene(graph);
 
