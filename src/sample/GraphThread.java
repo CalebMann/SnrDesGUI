@@ -22,12 +22,10 @@ public class GraphThread implements Runnable
             if(series != null){
                 series.getData().clear();
             }
-            System.out.println("Graphing1: "+GUI.SharedData.data[currentPointer]);
-
             for(int i=0; i<299; i++){
                 if(GUI.SharedData.data[currentPointer] != null){
                     System.out.println("Graphing3: "+GUI.SharedData.data[currentPointer]);
-                    series.getData().add(new XYChart.Data(-1*i,GUI.SharedData.data[currentPointer]));
+                    series.getData().add(new XYChart.Data(-1*i,GUI.SharedData.data[currentPointer]/1000.0));
                     if(currentPointer==0){
                         currentPointer=299;
                     }else{

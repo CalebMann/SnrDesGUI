@@ -39,7 +39,7 @@ public class DisplayThread implements Runnable
                 {
                     try
                     {
-                        String test = "+" + GUI.SharedData.phoneNumber;
+                        String test = GUI.SharedData.phoneNumber + GUI.SharedData.highText;
                         byte[] bytes = test.getBytes();
                         DatagramPacket sendPacket = new DatagramPacket(
                                 bytes, bytes.length,
@@ -57,7 +57,7 @@ public class DisplayThread implements Runnable
                 {
                     try
                     {
-                        String test = "-" + GUI.SharedData.phoneNumber;
+                        String test = GUI.SharedData.phoneNumber + GUI.SharedData.lowText;
                         byte[] bytes = test.getBytes();
                         DatagramPacket sendPacket = new DatagramPacket(
                                 bytes, bytes.length,

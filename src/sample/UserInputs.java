@@ -20,6 +20,14 @@ public class UserInputs extends JPanel
     private final JLabel currentmaxDisplay;
     private final JLabel currentminDisplay;
     private final JLabel current;
+    private final JTextField highTempTextInput;
+    private final JTextField lowTempTextInput;
+    private final JLabel highTempTextDisplay;
+    private final JLabel lowTempTextDisplay;
+    private final JTextField currenthighTempTextInput;
+    private final JTextField currentlowTempTextInput;
+    private final JLabel currenthighTempTextDisplay;
+    private final JLabel currentlowTempTextDisplay;
 
     public UserInputs()
     {
@@ -83,10 +91,43 @@ public class UserInputs extends JPanel
         currentminInput.setText("-10");
         add(currentminInput);
 
+        highTempTextDisplay = new JLabel("High Temp Text: ");
+        add(highTempTextDisplay);
+
+        highTempTextInput = new JTextField();
+        highTempTextInput.setColumns(12);
+        add(highTempTextInput);
+
+        lowTempTextDisplay = new JLabel("Low Temp Text: ");
+        add(lowTempTextDisplay);
+
+        lowTempTextInput = new JTextField();
+        lowTempTextInput.setColumns(12);
+        add(lowTempTextInput);
+
+        currenthighTempTextDisplay = new JLabel("Current High Temp Text: ");
+        add(currenthighTempTextDisplay);
+
+        currenthighTempTextInput = new JTextField("high");
+        currenthighTempTextInput.setColumns(10);
+        currenthighTempTextInput.setEditable(false);
+        add(currenthighTempTextInput);
+
+        currentlowTempTextDisplay = new JLabel("Current Low Temp Text: ");
+        add(currentlowTempTextDisplay);
+
+        currentlowTempTextInput = new JTextField("low");
+        currentlowTempTextInput.setColumns(10);
+        currentlowTempTextInput.setEditable(false);
+        add(currentlowTempTextInput);
+
+
         EnterListener enterListener = new EnterListener();
         phoneInput.addKeyListener(enterListener);
         maxInput.addKeyListener(enterListener);
         minInput.addKeyListener(enterListener);
+        highTempTextInput.addKeyListener(enterListener);
+        lowTempTextInput.addKeyListener(enterListener);
 
     }
 
@@ -114,6 +155,14 @@ public class UserInputs extends JPanel
                 else if(e.getSource() == minInput)
                 {
                     validateAndSetMin();
+                }
+                else if(e.getSource() == highTempTextInput)
+                {
+                    validateAndSetHighText();
+                }
+                else if(e.getSource() == lowTempTextInput)
+                {
+                    validateAndSetLowText();
                 }
             }
         }
@@ -171,6 +220,19 @@ public class UserInputs extends JPanel
             }
             minInput.setText("");
         }
-    }
 
+        public void validateAndSetHighText()
+        {
+            currenthighTempTextInput.setText(highTempTextInput.getText());
+            GUI.SharedData.highText = highTempTextInput.getText();
+            highTempTextInput.setText("");
+        }
+
+        public void validateAndSetLowText()
+        {
+            currentlowTempTextInput.setText(lowTempTextInput.getText());
+            GUI.SharedData.lowText = lowTempTextInput.getText();
+            lowTempTextInput.setText("");
+        }
+    }
 }

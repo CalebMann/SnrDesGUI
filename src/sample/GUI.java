@@ -109,7 +109,9 @@ public class GUI extends JFrame
 
                 SharedData.packetsReceived++;
                 SharedData.sumData += Integer.parseInt(messageReceived);
+                //System.out.println(SharedData.data[SharedData.dataPointer]);
                 SharedData.data[SharedData.dataPointer] = SharedData.sumData/SharedData.packetsReceived;
+                //System.out.println(SharedData.data[SharedData.dataPointer]);
 
             }catch (Exception ex){
                 ex.printStackTrace();
@@ -125,6 +127,8 @@ public class GUI extends JFrame
         static String phoneNumber = "5632310443";
         static Integer sumData = 0;
         static Integer packetsReceived = 0;
+        static String lowText = "low";
+        static String highText = "high";
 
         public static void incDP(){
             if(dataPointer == 299){
