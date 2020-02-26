@@ -69,12 +69,6 @@ public class GUI extends JFrame
         splitInfo.setTopComponent(panel3);
         splitInfo.setBottomComponent(panel4);
 
-
-
-
-
-
-
         this.setVisible(true);
 
         try // create DatagramSocket for sending and receiving packets
@@ -100,29 +94,6 @@ public class GUI extends JFrame
         executorService.execute(new DisplayThread(panel1));
         scheduleService.scheduleAtFixedRate(new GraphThread(), 0, 1, TimeUnit.SECONDS);
         executorService.execute(new dataThread(this));
-
-
-
-
-
-
-
-
-//        try
-//        {
-//            String test = "-3197438628";
-//            byte[] bytes = test.getBytes();
-//            DatagramPacket sendPacket = new DatagramPacket(
-//                    bytes, bytes.length,
-//                    InetAddress.getLocalHost(), 5000);
-//            //sendPacketToMaven(sendPacket);
-//        }
-//        catch (Exception ex)
-//        {
-//            System.out.println(ex);
-//        }
-
-
     }
 
 
@@ -177,8 +148,8 @@ public class GUI extends JFrame
 
 
     private static Scene createScene() {
-        NumberAxis xAxis = new NumberAxis(0,300,5);
-        NumberAxis yAxis = new NumberAxis(-10,63,5);
+        NumberAxis xAxis = new NumberAxis(-300,0,100);
+        NumberAxis yAxis = new NumberAxis(10,50,5);
 
         yAxis.setSide(Side.RIGHT);
 
@@ -191,9 +162,12 @@ public class GUI extends JFrame
         final ScatterChart<Number,Number> graph = new ScatterChart(xAxis,yAxis);
         graph.setTitle("Realtime Temperature Data");
         graph.setAnimated(false);
+        graph.setScaleShape(true);
 
         XYChart.Series<Number,Number> series = new XYChart.Series<>();
         series.setName("Temperature Data");
+
+        //series.getData().add(new XYChart.Data(-10,27));
 
         graph.getData().add(series);
 
