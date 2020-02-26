@@ -45,20 +45,20 @@ public class ShutOffScreen extends JPanel
             if(e.getSource() == turnOffButton)
             {
                 //some instruction to turn the display off will be sent
-                try
-                {
-                    String test = "1";
-                    byte[] bytes = test.getBytes();
-                    DatagramPacket sendPacket = new DatagramPacket(
-                            bytes, bytes.length,
-                            InetAddress.getLocalHost(), 9999);
-                    GUI.sendPackets(sendPacket);
-                    System.out.println("Display on sent");
-                }
-                catch (Exception ex)
-                {
-                    System.out.println(ex);
-                }
+//                try
+//                {
+//                    String test = "1";
+//                    byte[] bytes = test.getBytes();
+//                    DatagramPacket sendPacket = new DatagramPacket(
+//                            bytes, bytes.length,
+//                            InetAddress.getLocalHost(), 9999);
+//                    GUI.sendPackets(sendPacket);
+//                    System.out.println("Display on sent");
+//                }
+//                catch (Exception ex)
+//                {
+//                    System.out.println(ex);
+//                }
             }
         }
 
@@ -68,20 +68,20 @@ public class ShutOffScreen extends JPanel
             if(e.getSource() == turnOffButton)
             {
                 //some instruction to turn the display off will be sent
-                try
-                {
-                    String test = "0";
-                    byte[] bytes = test.getBytes();
-                    DatagramPacket sendPacket = new DatagramPacket(
-                            bytes, bytes.length,
-                            InetAddress.getLocalHost(), 9999);
-                    GUI.sendPackets(sendPacket);
-                    System.out.println("Display off sent");
-                }
-                catch (Exception ex)
-                {
-                    System.out.println(ex);
-                }
+//                try
+//                {
+//                    String test = "0";
+//                    byte[] bytes = test.getBytes();
+//                    DatagramPacket sendPacket = new DatagramPacket(
+//                            bytes, bytes.length,
+//                            InetAddress.getByAddress("","".getBytes()), 9999);
+//                    GUI.sendPackets(sendPacket);
+//                    System.out.println("Display off sent");
+//                }
+//                catch (Exception ex)
+//                {
+//                    System.out.println(ex);
+//                }
             }
         }
 
