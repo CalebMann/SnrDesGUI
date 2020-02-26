@@ -47,15 +47,11 @@ public class ShutOffScreen extends JPanel
                 //some instruction to turn the display off will be sent
                 try
                 {
-                    byte[] by = new byte[1];
+                    String test = "1";
+                    byte[] bytes = test.getBytes();
                     DatagramPacket sendPacket = new DatagramPacket(
-                            by,by.length,
+                            bytes, bytes.length,
                             InetAddress.getByName("172.20.10.8"), 9998);
-//                    String test = "1";
-//                    byte[] bytes = test.getBytes();
-//                    DatagramPacket sendPacket = new DatagramPacket(
-//                            bytes, bytes.length,
-//                            InetAddress.getByName("172.20.10.8"), 9998);
                     GUI.sendPackets(sendPacket);
                     System.out.println("Display on sent");
                 }
@@ -74,18 +70,13 @@ public class ShutOffScreen extends JPanel
                 //some instruction to turn the display off will be sent
                 try
                 {
-                    byte[] by = new byte[1];
-                    DatagramPacket sendPacket = new DatagramPacket(
-                            by,by.length,
-                            InetAddress.getByName("172.20.10.8"), 9998);
+                    String test = "0";
+                    byte[] bytes = test.getBytes();
+                    //byte[] addr = new byte[] {172,20,10,8};
 
-//                    String test = "0";
-//                    byte[] bytes = test.getBytes();
-//                    //byte[] addr = new byte[] {172,20,10,8};
-//
-//                    DatagramPacket sendPacket = new DatagramPacket(
-//                            bytes, bytes.length,
-//                            InetAddress.getByName("172.20.10.8"), 9998);
+                    DatagramPacket sendPacket = new DatagramPacket(
+                            bytes, bytes.length,
+                            InetAddress.getByName("172.20.10.8"), 9998);
                     GUI.sendPackets(sendPacket);
                     System.out.println("Display off sent");
                 }

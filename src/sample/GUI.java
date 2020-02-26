@@ -84,7 +84,7 @@ public class GUI extends JFrame
         ExecutorService executorService = Executors.newCachedThreadPool();
         ScheduledExecutorService scheduleService =Executors.newScheduledThreadPool(1);
         executorService.execute(new DisplayThread(panel1));
-        scheduleService.scheduleAtFixedRate(new GraphThread(series), 0, 1, TimeUnit.SECONDS);
+        scheduleService.scheduleAtFixedRate(new GraphThread(), 0, 1, TimeUnit.SECONDS);
         executorService.execute(new dataThread(this));
     }
 

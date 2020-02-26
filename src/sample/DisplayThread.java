@@ -14,9 +14,11 @@ public class DisplayThread implements Runnable
     {
         while(true)
         {
+            //System.out.println("This is the current data: " + GUI.SharedData.dataPointer);
             if(GUI.SharedData.data[GUI.SharedData.dataPointer] != null)
             {
                 Float currentData = GUI.SharedData.data[GUI.SharedData.dataPointer].floatValue()/((float)1000);
+                System.out.println("This is the current data: " + currentData);
                 if(panel.fahrenheit.isSelected()){
                     currentData = (float)(1.8 * currentData + 32);
                 }
