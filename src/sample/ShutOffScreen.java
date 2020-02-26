@@ -45,20 +45,24 @@ public class ShutOffScreen extends JPanel
             if(e.getSource() == turnOffButton)
             {
                 //some instruction to turn the display off will be sent
-//                try
-//                {
+                try
+                {
+                    byte[] by = new byte[1];
+                    DatagramPacket sendPacket = new DatagramPacket(
+                            by,by.length,
+                            InetAddress.getByName("172.20.10.8"), 9998);
 //                    String test = "1";
 //                    byte[] bytes = test.getBytes();
 //                    DatagramPacket sendPacket = new DatagramPacket(
 //                            bytes, bytes.length,
-//                            InetAddress.getLocalHost(), 9999);
-//                    GUI.sendPackets(sendPacket);
-//                    System.out.println("Display on sent");
-//                }
-//                catch (Exception ex)
-//                {
-//                    System.out.println(ex);
-//                }
+//                            InetAddress.getByName("172.20.10.8"), 9998);
+                    GUI.sendPackets(sendPacket);
+                    System.out.println("Display on sent");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println(ex);
+                }
             }
         }
 
@@ -68,20 +72,27 @@ public class ShutOffScreen extends JPanel
             if(e.getSource() == turnOffButton)
             {
                 //some instruction to turn the display off will be sent
-//                try
-//                {
+                try
+                {
+                    byte[] by = new byte[1];
+                    DatagramPacket sendPacket = new DatagramPacket(
+                            by,by.length,
+                            InetAddress.getByName("172.20.10.8"), 9998);
+
 //                    String test = "0";
 //                    byte[] bytes = test.getBytes();
+//                    //byte[] addr = new byte[] {172,20,10,8};
+//
 //                    DatagramPacket sendPacket = new DatagramPacket(
 //                            bytes, bytes.length,
-//                            InetAddress.getByAddress("","".getBytes()), 9999);
-//                    GUI.sendPackets(sendPacket);
-//                    System.out.println("Display off sent");
-//                }
-//                catch (Exception ex)
-//                {
-//                    System.out.println(ex);
-//                }
+//                            InetAddress.getByName("172.20.10.8"), 9998);
+                    GUI.sendPackets(sendPacket);
+                    System.out.println("Display off sent");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println(ex);
+                }
             }
         }
 
