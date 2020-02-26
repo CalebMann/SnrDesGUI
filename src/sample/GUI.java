@@ -3,20 +3,14 @@ package sample;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.geometry.Side;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.ScatterChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.SplitPane;
-import javafx.scene.text.Text;
-import javafx.scene.text.Font;
-import javafx.scene.paint.Color;
-import  javax.swing.*;
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.*;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -26,7 +20,6 @@ public class GUI extends JFrame
 {
     private static DatagramSocket socket;
     private static DatagramSocket hardwareSocket;
-
 
     public GUI() {
         //this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -96,7 +89,6 @@ public class GUI extends JFrame
         executorService.execute(new dataThread(this));
     }
 
-
     public static void sendPackets(DatagramPacket receivePacket)
             throws IOException {
         DatagramPacket sendPacket = new DatagramPacket(
@@ -126,7 +118,6 @@ public class GUI extends JFrame
         }
     }
 
-
     public static class SharedData{
         static Integer data[] = new Integer[300];
         static int dataPointer = 0;
@@ -137,15 +128,11 @@ public class GUI extends JFrame
         static Integer packetsReceived = 0;
     }
 
-
     private static void initFX(JFXPanel fxPanel) {
         // This method is invoked on the JavaFX thread
         Scene scene = createScene();
         fxPanel.setScene(scene);
     }
-
-
-
 
     private static Scene createScene() {
         NumberAxis xAxis = new NumberAxis(-300,0,100);
@@ -175,8 +162,6 @@ public class GUI extends JFrame
 
         return (scene);
     }
-
-
 }
 
 

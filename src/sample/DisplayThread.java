@@ -1,5 +1,4 @@
 package sample;
-import javax.swing.*;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 

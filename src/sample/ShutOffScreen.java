@@ -4,10 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
 
 public class ShutOffScreen extends JPanel
 {
     private final JButton turnOffButton;
+    private static DatagramSocket socket;
 
     public ShutOffScreen()
     {
@@ -18,6 +23,14 @@ public class ShutOffScreen extends JPanel
 
         ButtonHit buttonHit = new ButtonHit();
         turnOffButton.addMouseListener(buttonHit);
+
+        try // create DatagramSocket for sending and receiving packets
+        {
+            socket = new DatagramSocket();
+        } catch (SocketException socketException) {
+            socketException.printStackTrace();
+            System.exit(1);
+        }
     }
 
     private class ButtonHit implements MouseListener
@@ -32,7 +45,20 @@ public class ShutOffScreen extends JPanel
             if(e.getSource() == turnOffButton)
             {
                 //some instruction to turn the display off will be sent
-                System.out.println("Display on");
+                try
+                {
+                    String test = "1";
+                    byte[] bytes = test.getBytes();
+                    DatagramPacket sendPacket = new DatagramPacket(
+                            bytes, bytes.length,
+                            InetAddress.getLocalHost(), 9999);
+                    GUI.sendPackets(sendPacket);
+                    System.out.println("Display on sent");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println(ex);
+                }
             }
         }
 
@@ -42,7 +68,20 @@ public class ShutOffScreen extends JPanel
             if(e.getSource() == turnOffButton)
             {
                 //some instruction to turn the display off will be sent
-                System.out.println("Display off");
+                try
+                {
+                    String test = "1";
+                    byte[] bytes = test.getBytes();
+                    DatagramPacket sendPacket = new DatagramPacket(
+                            bytes, bytes.length,
+                            InetAddress.getLocalHost(), 9999);
+                    GUI.sendPackets(sendPacket);
+                    System.out.println("Display off sent");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println(ex);
+                }
             }
         }
 
