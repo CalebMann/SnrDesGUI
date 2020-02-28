@@ -13,17 +13,6 @@ public class GraphThread implements Runnable
     @Override
     public void run()
     {
-        //this.series = GUI.series;
-        //System.out.println(series);
-/*        for(int i = 0; i<300; i++)
-        {
-            try{
-                if(GUI.SharedData.data[i] != null)
-                {
-                    System.out.println(GUI.SharedData.data[i]);
-                }
-            }catch (Exception ex) {}
-        }*/
         try{
             GUI.SharedData.packetsReceived = 0;
             GUI.SharedData.sumData = 0;
@@ -42,7 +31,6 @@ public class GraphThread implements Runnable
 
             for(int i=0; i<299; i++){
                 if(GUI.SharedData.data[currentPointer] != null){
-                    //System.out.println("Graphing3: "+GUI.SharedData.data[currentPointer]);
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
@@ -53,15 +41,18 @@ public class GraphThread implements Runnable
                                     currentPointer++;
                                 }
                                 //System.out.println("DataPtr: "+GUI.SharedData.dataPointer+" Curptr: "+ currentPointer + " data:" + GUI.SharedData.data[currentPointer]);
-                                GUI.series.getData().add(new XYChart.Data<>(-1*(GUI.SharedData.dataPointer - currentPointer),GUI.SharedData.data[currentPointer]/1000.0));
+                                if(GUI.SharedData.dataPointer - currentPointer < 0){
+                                    GUI.series.getData().add(new XYChart.Data<>(-1*(GUI.SharedData.dataPointer - currentPointer+300),GUI.SharedData.data[currentPointer]/1000.0));
+                                }else{
+                                    GUI.series.getData().add(new XYChart.Data<>(-1*(GUI.SharedData.dataPointer - currentPointer),GUI.SharedData.data[currentPointer]/1000.0));
+                                }
+
+
                             }catch (Exception ex){
                                 System.out.println("error: "+ex);
-
                             }
-
                         }
                     });
-                    //System.out.println("Graphing4: "+GUI.SharedData.data[currentPointer]);
                     if(currentPointer==0){
                         currentPointer=299;
                     }else{
