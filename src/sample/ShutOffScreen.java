@@ -22,6 +22,7 @@ public class ShutOffScreen extends JPanel
         setLayout(new FlowLayout());
         //Setting up the button and event handler
         turnOffButton = new JButton("Box Display Button");
+        turnOffButton.setBackground(new Color(255, 5, 23, 141));
         add(turnOffButton);
         ButtonHit buttonHit = new ButtonHit();
         turnOffButton.addMouseListener(buttonHit);
