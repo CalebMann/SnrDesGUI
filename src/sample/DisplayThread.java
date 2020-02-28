@@ -31,10 +31,14 @@ public class DisplayThread implements Runnable
                 //Turn the data into its correct format by dividing by 1000
                 Float currentData = GUI.SharedData.data[currentPointer].floatValue()/((float)1000);
                 //If fahrenheit is selected then convert the display to fahrenheit else leave it as celsius
-                if(panel.fahrenheit.isSelected()){
-                    panel.tempTextDisplay.setText(((Float)(1.8f*currentData+32)).toString());
+                if(GUI.SharedData.data[currentPointer]< -10000 || GUI.SharedData.data[currentPointer] > 63000){
+                    panel.tempTextDisplay.setText("unplugged sensor");
                 }else{
-                    panel.tempTextDisplay.setText(currentData.toString());
+                    if(panel.fahrenheit.isSelected()){
+                        panel.tempTextDisplay.setText(((Float)(1.8f*currentData+32)).toString());
+                    }else{
+                        panel.tempTextDisplay.setText(currentData.toString());
+                    }
                 }
                 //If we have triggered the flag for being above the max temp threshold
                 if(aboveMax)
@@ -96,6 +100,8 @@ public class DisplayThread implements Runnable
                     //Set the min Flag
                     belowMin = true;
                 }
+            }else{
+                panel.tempTextDisplay.setText("no data available");
             }
         }
     }

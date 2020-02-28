@@ -29,9 +29,9 @@ public class GraphThread implements Runnable
                 });
             }
 
-/*            if(!(currentPointer < 3 || currentPointer > 5)){}
-            else if(!(currentPointer < 20 || currentPointer > 28)){}
-            else GUI.SharedData.data[currentPointer] = 30000 + (int)(Math.sin(currentPointer/10.0)*10000);*/
+            if(!(currentPointer < 3 || currentPointer > 8)){}
+            else if(!(currentPointer < 50 || currentPointer > 65)){}
+            else GUI.SharedData.data[currentPointer] = 30000 + (int)(Math.sin(currentPointer/15.0)*20000);
 
             //A for loop will run for each piece of data
             for(int i=0; i<299; i++){
@@ -47,7 +47,7 @@ public class GraphThread implements Runnable
                                 currentPointer--;
                             }
                             //If data exists then add it to the series
-                            if(GUI.SharedData.data[currentPointer] != null){
+                            if(GUI.SharedData.data[currentPointer] != null && (GUI.SharedData.data[currentPointer]>= -10000 && GUI.SharedData.data[currentPointer] <= 63000)){
                                 if(GUI.SharedData.dataPointer - currentPointer < 0){
                                     GUI.series.getData().add(new XYChart.Data<>(-1*(GUI.SharedData.dataPointer - currentPointer+300),GUI.SharedData.data[currentPointer]/1000.0));
                                 }else{
