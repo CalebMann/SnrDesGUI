@@ -136,6 +136,7 @@ public class GUI extends JFrame
             }else{
                 dataPointer++;
             }
+            data[dataPointer] = null;
         }
 
         public static void cleardata(){
@@ -143,6 +144,26 @@ public class GUI extends JFrame
                 data[i] = null;
             }
         }
+
+        public static void printdata(){
+            for(int i=0; i<300; i++){
+                int address = dataPointer - i;
+                if(address < 0)address+=300;
+                if(data[address] != null){
+                    System.out.println("Data["+address+"]: "+data[address]);
+                }
+            }
+        }
+
+/*        public static void displaydata(){
+            for(int i=0; i<300; i++){
+                int address = dataPointer - i;
+                if(address < 0)address+=300;
+                if(data[address] != null){
+                    System.out.println("Data["+address+"]: "+data[address]);
+                }
+            }
+        }*/
 
     }
 
