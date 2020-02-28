@@ -27,7 +27,7 @@ public class GraphThread implements Runnable
                 });
             }
             GUI.SharedData.data[currentPointer] = 30000 + (int)(Math.sin(currentPointer/10.0)*10000);
-            System.out.println("Putting temp data " + GUI.SharedData.data[currentPointer] + " in pos " + currentPointer);
+            //System.out.println("Putting temp data " + GUI.SharedData.data[currentPointer] + " in pos " + currentPointer);
 
             for(int i=0; i<299; i++){
                 if(GUI.SharedData.data[currentPointer] != null){

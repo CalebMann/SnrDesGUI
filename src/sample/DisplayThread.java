@@ -25,9 +25,11 @@ public class DisplayThread implements Runnable
                 Float currentData = GUI.SharedData.data[currentPointer].floatValue()/((float)1000);
                 //System.out.println("This is the current data: " + currentData);
                 if(panel.fahrenheit.isSelected()){
-                    currentData = (float)(1.8 * currentData + 32);
+                    panel.tempTextDisplay.setText(((Float)(1.8f*currentData+32)).toString());
+                }else{
+                    panel.tempTextDisplay.setText(currentData.toString());
                 }
-                panel.tempTextDisplay.setText(currentData.toString());
+
                 if(aboveMax)
                 {
                     if(currentData < (GUI.SharedData.Tmax - 5) || belowMin)
