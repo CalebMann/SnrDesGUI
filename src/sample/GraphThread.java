@@ -30,11 +30,7 @@ public class GraphThread implements Runnable
             }
 
 /*            if(!(currentPointer < 3 || currentPointer > 5)){}
-            else if(!(currentPointer < 10 || currentPointer > 14)){}
             else if(!(currentPointer < 20 || currentPointer > 28)){}
-            else if(!(currentPointer < 50 || currentPointer > 80)){}
-            else if(!(currentPointer < 150 || currentPointer > 200)){}
-            else if(!(currentPointer < 290)){}
             else GUI.SharedData.data[currentPointer] = 30000 + (int)(Math.sin(currentPointer/10.0)*10000);*/
 
             //A for loop will run for each piece of data
