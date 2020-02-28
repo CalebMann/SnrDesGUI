@@ -123,11 +123,21 @@ public class GUI extends JFrame
                 messageReceived = messageReceived.substring(0,5);
                 System.out.println(messageReceived);
                 //Increment the number of packets seen in the past 1 second
-                SharedData.packetsReceived++;
-                //Add the received data to the current sum
-                SharedData.sumData += Integer.parseInt(messageReceived);
-                //Store the average in the data array
-                SharedData.data[SharedData.dataPointer] = SharedData.sumData/SharedData.packetsReceived;
+                if(Integer.parseInt(messageReceived) < -10000){
+                    if(SharedData.packetsReceived == 0){
+                        SharedData.data[SharedData.dataPointer] = Integer.MIN_VALUE;
+                    }
+                }else if(Integer.parseInt(messageReceived) > 63000){
+                    if(SharedData.packetsReceived == 0){
+                        SharedData.data[SharedData.dataPointer] = Integer.MAX_VALUE;
+                    }
+                }else{
+                    SharedData.packetsReceived++;
+                    //Add the received data to the current sum
+                    SharedData.sumData += Integer.parseInt(messageReceived);
+                    //Store the average in the data array
+                    SharedData.data[SharedData.dataPointer] = SharedData.sumData/SharedData.packetsReceived;
+                }
             }catch (Exception ex){
                 //ex.printStackTrace();
             }

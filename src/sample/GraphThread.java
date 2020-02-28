@@ -31,8 +31,16 @@ public class GraphThread implements Runnable
 
 /*            if(!(currentPointer < 3 || currentPointer > 8)){}
             else if(!(currentPointer < 50 || currentPointer > 65)){}
-            else GUI.SharedData.data[currentPointer] = 30000 + (int)(Math.sin(currentPointer/15.0)*20000);*/
-
+            else {
+                int d = 30000 + (int)(Math.sin(currentPointer/15.0)*40000);
+                if(d < -10000){
+                    d = Integer.MIN_VALUE;
+                }else if (d > 63000){
+                    d = Integer.MAX_VALUE;
+                }
+                GUI.SharedData.data[currentPointer] = d;
+            }*/
+            //System.out.println("**********NEW THREAD**********");
             //A for loop will run for each piece of data
             for(int i=0; i<299; i++){
                 //Create a new thread on the javaFX panel for each data point
@@ -46,6 +54,9 @@ public class GraphThread implements Runnable
                             }else{
                                 currentPointer--;
                             }
+/*                            if(GUI.SharedData.data[currentPointer] != null){
+                                System.out.println("Data["+currentPointer+"]: "+GUI.SharedData.data[currentPointer]);
+                            }*/
                             //If data exists then add it to the series
                             if(GUI.SharedData.data[currentPointer] != null && (GUI.SharedData.data[currentPointer]>= -10000 && GUI.SharedData.data[currentPointer] <= 63000)){
                                 if(GUI.SharedData.dataPointer - currentPointer < 0){
