@@ -3,25 +3,32 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+//This is the panel for the buttons and display for showing the temperature
 public class ShowTempFahrOrCel extends JPanel
 {
+    //A button to toggle to celsius
     public final JToggleButton celsius;
+    //A button to toggle to fahrenheit
     public final JToggleButton fahrenheit;
+    //A text field to show the display
     public JTextField tempTextDisplay;
 
     public ShowTempFahrOrCel()
     {
+        //Sets the layout of the panel
         setLayout(new FlowLayout());
 
+        //Set a default display to the text field and gets the settings set
         tempTextDisplay = new JTextField("Unplugged Sensor");
         tempTextDisplay.setEditable(false);
         add(tempTextDisplay);
 
+        //Set up the toggleability and properties of the buttons
         celsius = new JToggleButton("Celsius", true);
         celsius.setSize(70,40);
         add(celsius);
 
+        //Set up the toggleability and properties of the buttons
         fahrenheit = new JToggleButton("Fahrenheit", false);
         celsius.setSize(70,40);
         add(fahrenheit);
@@ -31,6 +38,7 @@ public class ShowTempFahrOrCel extends JPanel
         fahrenheit.addMouseListener(t);
     }
 
+    //A class to set up how the buttons will toggle, making one deselect the other when pressed
     private class Toggle implements MouseListener
     {
 

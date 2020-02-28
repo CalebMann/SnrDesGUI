@@ -8,19 +8,21 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-
+//This class handles a button to virtually control the physical button on the hardware
 public class ShutOffScreen extends JPanel
 {
+    //A button to simulate the hardware
     private final JButton turnOffButton;
+    //A socket for sending the data
     private static DatagramSocket socket;
 
     public ShutOffScreen()
     {
+        //Setting the layout type
         setLayout(new FlowLayout());
-
+        //Setting up the button and event handler
         turnOffButton = new JButton("Box Display Button");
         add(turnOffButton);
-
         ButtonHit buttonHit = new ButtonHit();
         turnOffButton.addMouseListener(buttonHit);
 
@@ -32,10 +34,9 @@ public class ShutOffScreen extends JPanel
             System.exit(1);
         }
     }
-
+//Listener for the button being pressed
     private class ButtonHit implements MouseListener
     {
-
         @Override
         public void mouseClicked(MouseEvent e) {}
 
@@ -47,6 +48,7 @@ public class ShutOffScreen extends JPanel
                 //some instruction to turn the display off will be sent
                 try
                 {
+                    //Send a "1" to the hardware
                     String test = "1";
                     byte[] bytes = test.getBytes();
                     DatagramPacket sendPacket = new DatagramPacket(
@@ -61,7 +63,7 @@ public class ShutOffScreen extends JPanel
                 }
             }
         }
-
+        //Listener for when the button is released
         @Override
         public void mouseReleased(MouseEvent e)
         {
@@ -70,6 +72,7 @@ public class ShutOffScreen extends JPanel
                 //some instruction to turn the display off will be sent
                 try
                 {
+                    //Send a "0" to the hardware
                     String test = "0";
                     byte[] bytes = test.getBytes();
                     //byte[] addr = new byte[] {172,20,10,8};
