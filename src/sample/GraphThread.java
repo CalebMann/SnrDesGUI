@@ -52,7 +52,7 @@ public class GraphThread implements Runnable
                                 }else{
                                     currentPointer++;
                                 }
-                                //System.out.println("DataPtr: "+GUI.SharedData.dataPointer+" Curptr: "+ currentPointer + " data:" + GUI.SharedData.data[currentPointer] + " i: " + i);
+                                //System.out.println("DataPtr: "+GUI.SharedData.dataPointer+" Curptr: "+ currentPointer + " data:" + GUI.SharedData.data[currentPointer]);
                                 GUI.series.getData().add(new XYChart.Data<>(-1*(GUI.SharedData.dataPointer - currentPointer),GUI.SharedData.data[currentPointer]/1000.0));
                             }catch (Exception ex){
                                 System.out.println("error: "+ex);
