@@ -48,7 +48,7 @@ public class DisplayThread implements Runnable
                 {
                     try
                     {
-                        String test = GUI.SharedData.phoneNumber + GUI.SharedData.highText;
+                        String test = GUI.SharedData.phoneNumber + ";" + GUI.SharedData.highText;
                         byte[] bytes = test.getBytes();
                         DatagramPacket sendPacket = new DatagramPacket(
                                 bytes, bytes.length,
@@ -66,7 +66,7 @@ public class DisplayThread implements Runnable
                 {
                     try
                     {
-                        String test = GUI.SharedData.phoneNumber + GUI.SharedData.lowText;
+                        String test = GUI.SharedData.phoneNumber + ";" + GUI.SharedData.lowText;
                         byte[] bytes = test.getBytes();
                         DatagramPacket sendPacket = new DatagramPacket(
                                 bytes, bytes.length,
@@ -81,11 +81,6 @@ public class DisplayThread implements Runnable
                     belowMin = true;
                 }
             }
-            else
-            {
-
-            }
-
         }
     }
 }
