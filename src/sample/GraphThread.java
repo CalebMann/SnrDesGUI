@@ -49,7 +49,7 @@ public class GraphThread implements Runnable
 
 
                             }catch (Exception ex){
-                                System.out.println("error: "+ex);
+                                //System.out.println("error: "+ex);
                             }
                         }
                     });
