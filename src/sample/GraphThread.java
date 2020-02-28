@@ -29,9 +29,9 @@ public class GraphThread implements Runnable
                 });
             }
 
-            if(!(currentPointer < 3 || currentPointer > 8)){}
+/*            if(!(currentPointer < 3 || currentPointer > 8)){}
             else if(!(currentPointer < 50 || currentPointer > 65)){}
-            else GUI.SharedData.data[currentPointer] = 30000 + (int)(Math.sin(currentPointer/15.0)*20000);
+            else GUI.SharedData.data[currentPointer] = 30000 + (int)(Math.sin(currentPointer/15.0)*20000);*/
 
             //A for loop will run for each piece of data
             for(int i=0; i<299; i++){
