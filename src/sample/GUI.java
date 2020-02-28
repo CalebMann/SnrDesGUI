@@ -171,9 +171,8 @@ public class GUI extends JFrame
 
         series = new XYChart.Series<>();
         series.setName("Temperature Data");
-
+        //GUI.series.getData().add(new XYChart.Data<>(-10,30));
         graph.getData().add(series);
-
         //series.getData().add(new XYChart.Data(-10,27));
         //series.getData().add(new XYChart.Data(-20,27));
 

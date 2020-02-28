@@ -1,13 +1,15 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.scene.chart.XYChart;
 
 import java.awt.*;
+import java.sql.SQLOutput;
 
 public class GraphThread implements Runnable
 {
     //public static XYChart.Series<Number,Number> series;
-
+    int currentPointer = 0;
     @Override
     public void run()
     {
@@ -25,22 +27,47 @@ public class GraphThread implements Runnable
         try{
             GUI.SharedData.packetsReceived = 0;
             GUI.SharedData.sumData = 0;
-            int currentPointer = GUI.SharedData.dataPointer;
+            currentPointer = GUI.SharedData.dataPointer;
             GUI.SharedData.incDP();
             if(GUI.series != null){
-                GUI.series.getData().clear();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        GUI.series.getData().clear();
+                    }
+                });
             }
+            GUI.SharedData.data[currentPointer] = 30000 + (int)(Math.sin(currentPointer/10.0)*10000);
+            System.out.println("Putting temp data " + GUI.SharedData.data[currentPointer] + " in pos " + currentPointer);
+
             for(int i=0; i<299; i++){
                 if(GUI.SharedData.data[currentPointer] != null){
                     //System.out.println("Graphing3: "+GUI.SharedData.data[currentPointer]);
-                    GUI.series.getData().add(new XYChart.Data(-1*i,GUI.SharedData.data[currentPointer]/1000.0));
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                if(currentPointer >= 299){
+                                    currentPointer = 0;
+                                }else{
+                                    currentPointer++;
+                                }
+                                //System.out.println("DataPtr: "+GUI.SharedData.dataPointer+" Curptr: "+ currentPointer + " data:" + GUI.SharedData.data[currentPointer] + " i: " + i);
+                                GUI.series.getData().add(new XYChart.Data<>(-1*(GUI.SharedData.dataPointer - currentPointer),GUI.SharedData.data[currentPointer]/1000.0));
+                            }catch (Exception ex){
+                                System.out.println("error: "+ex);
+
+                            }
+
+                        }
+                    });
                     //System.out.println("Graphing4: "+GUI.SharedData.data[currentPointer]);
                     if(currentPointer==0){
                         currentPointer=299;
                     }else{
                         currentPointer--;
                     }
-                    System.out.println("Graphing5: "+GUI.SharedData.data[currentPointer]);
+                    //System.out.println("Graphing5: "+GUI.SharedData.data[currentPointer]);
                 }
             }
         }catch (Exception e){
