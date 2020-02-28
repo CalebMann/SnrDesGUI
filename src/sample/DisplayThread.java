@@ -60,7 +60,7 @@ public class DisplayThread implements Runnable
                     }
                 }
                 //If the Data is above the max threshold and the Maxflag is not set
-                if(currentData > GUI.SharedData.Tmax && !aboveMax)
+                if((currentData > GUI.SharedData.Tmax && !aboveMax) && !(GUI.SharedData.data[currentPointer]< -10000 || GUI.SharedData.data[currentPointer] > 63000))
                 {
                     try
                     {
@@ -80,7 +80,7 @@ public class DisplayThread implements Runnable
                     //Set the flag
                     aboveMax = true;
                 }//If the data is less than the minimum threshold and the minFlag hasn't been set
-                else if(currentData < GUI.SharedData.Tmin && !belowMin)
+                else if((currentData < GUI.SharedData.Tmin && !belowMin) && !(GUI.SharedData.data[currentPointer]< -10000 || GUI.SharedData.data[currentPointer] > 63000))
                 {
                     try
                     {
